@@ -1,0 +1,90 @@
+<section class="mt-4 cadastro p-4">
+  <form class="row g-3" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="col-md-12">
+      <h3>Informações do produto</h3>
+    </div>
+    <ng-container formGroupName="produto">
+      <div class="col-md-12">
+        <label for="nome" class="form-label">Nome do Produto*</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nome"
+          formControlName="nome"
+        />
+      </div>
+      <div class="col-12">
+        <label for="descricao" class="form-label">Descrição</label>
+        <textarea
+          class="form-control"
+          placeholder="Descrição do produto"
+          id="descricao"
+          formControlName="descricao"
+        ></textarea>
+      </div>
+
+      <div class="col-md-8">
+        <label for="preco" class="form-label">Preço de Unitario</label>
+        <input
+          #preco
+          type="text"
+          class="form-control"
+          id="preco"
+          formControlName="preco"
+        />
+      </div>
+
+      <div class="col-md-4">
+        <label for="quantidade" class="form-label">Quantidade</label>
+        <input
+          #quantidade
+          type="text"
+          class="form-control"
+          id="quantidade"
+          formControlName="estoque"
+        />
+      </div>
+    </ng-container>
+
+    <hr />
+    <div class="col-md-12">
+      <h3>Informações da Compra</h3>
+    </div>
+
+    <div class="col-12">
+      <label for="descricao" class="form-label">Anotação</label>
+      <textarea
+        class="form-control"
+        placeholder="Descrição do produto"
+        id="descricao"
+        formControlName="anotacao"
+      ></textarea>
+    </div>
+
+    <div class="col-md-8">
+      <label for="preco" class="form-label">Valor Total</label>
+      <input
+        type="text"
+        class="form-control"
+        id="preco"
+        #valor
+        [value]="+preco.value * +quantidade.value"
+        formControlName="valor"
+      />
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <label for="data" class="form-label">Data </label>
+      <input
+        type="date"
+        class="form-control"
+        id="data"
+        formControlName="data"
+      />
+    </div>
+
+    <div class="col-12 d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </div>
+  </form>
+</section>

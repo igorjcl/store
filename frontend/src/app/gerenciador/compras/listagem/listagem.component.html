@@ -1,0 +1,47 @@
+<div class="filtro d-flex justify-content-end">
+  <button class="btn btn-primary mx-2" (click)="toggle()">Filtro</button>
+  <button class="btn btn-primary" [routerLink]="['/compras/cadastro']">
+    Adicionar
+  </button>
+</div>
+
+<div class="row g-3" *ngIf="isCollapsed">
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Nome</label>
+    <input
+      type="email"
+      class="form-control"
+      id="inputEmail4"
+      placeholder="Nome do produto"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Data</label>
+    <input type="date" class="form-control" id="inputPassword4" />
+  </div>
+
+  <div class="col-md-12 d-flex justify-content-end">
+    <button class="btn btn-primary">Filtrar</button>
+  </div>
+</div>
+
+<section class="mt-4 listagem p-4">
+  <table class="table table-borderless table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Preço Compra</th>
+        <th scope="col">Quantidade</th>
+        <th scope="col">Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let compra of compras">
+        <td>{{ compra.produto.nome }}</td>
+        <td>{{ compra.valor }} R$</td>
+        <td>{{ compra.quantidade }}</td>
+        <td>{{ compra.data }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

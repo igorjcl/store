@@ -1,0 +1,23 @@
+:host {
+  width: 100%;
+}
+
+.compras {
+  padding: 3.5rem 3rem 3rem 3rem;
+}
+
+.listagem {
+  background-color: #fff;
+  box-sizing: content-box;
+  border-radius: 0.3rem;
+  box-shadow: 0 0px 20px -10px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+  th {
+    background-color: #f5f5f5;
+  }
+  tr {
+    border: 1px solid #f5f5f5;
+  }
+}

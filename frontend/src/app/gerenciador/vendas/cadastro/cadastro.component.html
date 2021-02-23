@@ -1,0 +1,63 @@
+<section class="mt-4 cadastro p-4">
+  <form class="row g-3" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="col-md-12">
+      <label for="produto" class="form-label">Procurar Produto*</label>
+      <input
+        type="text"
+        class="form-control"
+        id="produto"
+        [ngbTypeahead]="pesquisar"
+        (focus)="focus$.next($any($event).target.value)"
+        (click)="click$.next($any($event).target.value)"
+        #instance="ngbTypeahead"
+        [resultFormatter]="formatter"
+        [inputFormatter]="formatter"
+        formControlName="produto"
+      />
+    </div>
+
+    <div class="col-md-4">
+      <label for="quantidade" class="form-label">Quantidade*</label>
+      <input
+        type="text"
+        class="form-control"
+        id="quantidade"
+        formControlName="quantidade"
+      />
+    </div>
+
+    <div class="col-md-8">
+      <label for="precoVenda" class="form-label">Preço da Venda</label>
+      <input
+        type="text"
+        class="form-control"
+        id="valor"
+        formControlName="valor"
+      />
+    </div>
+
+    <div class="col-md-12">
+      <label for="anotacao" class="form-label">Anotação</label>
+      <textarea
+        class="form-control"
+        placeholder="Descrição do produto"
+        id="anotacao"
+        formControlName="anotacao"
+      ></textarea>
+    </div>
+
+    <div class="col-md-12">
+      <label for="data" class="form-label">Data*</label>
+      <input
+        type="date"
+        class="form-control"
+        id="data"
+        formControlName="data"
+      />
+    </div>
+
+    <div class="col-12 d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </div>
+  </form>
+</section>

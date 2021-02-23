@@ -1,0 +1,34 @@
+<aside>
+  <div class="logo">
+    <h1>Logo</h1>
+  </div>
+
+  <nav class="menu">
+    <ul class="menu-ul">
+      <li
+        class="menu-item"
+        [routerLink]="['/produtos']"
+        routerLinkActive="--active"
+      >
+        <img src="/assets/images/icons/shopping-bag.svg" alt="Produtos" />
+        <span>Produtos</span>
+      </li>
+      <li
+        class="menu-item"
+        [routerLink]="['/compras/listagem']"
+        routerLinkActive="--active"
+      >
+        <img src="/assets/images/icons/shopping-cart.svg" alt="Compras" />
+        <span>Compras</span>
+      </li>
+      <li
+        class="menu-item"
+        [routerLink]="['/vendas/listagem']"
+        routerLinkActive="--active"
+      >
+        <img src="/assets/images/icons/shopping-bag.svg" alt="Vendas" />
+        <span>Vendas</span>
+      </li>
+    </ul>
+  </nav>
+</aside>

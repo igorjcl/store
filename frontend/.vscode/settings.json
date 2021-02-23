@@ -1,0 +1,10 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "database": "/home/parzival/www/ceica-store/backend/src/database/database.sqlite",
+      "name": "sqlite3"
+    }
+  ]
+}
