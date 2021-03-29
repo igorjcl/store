@@ -55,24 +55,26 @@ export default class VendasController {
   }
 
   async listAll(req: Request, res: Response) {
+    let nome = req.query.nome ? req.query.nome : "";
+    let data = req.query.data ? req.query.data : "";
+
     try {
-      const vendas: any = await db("vendas").leftJoin(
-        "produtos",
-        "produtos.id",
-        "vendas.produto_id"
-      );
+      const vendas: any = await db("vendas")
+        .leftJoin("produtos", "produtos.id", "vendas.produto_id")
+        .where("nome", "like", `%${nome}%`)
+        .where("data", "like", `%${data}%`);
 
       const v = vendas.map((venda: any) => ({
         produto: {
           id: venda.produto_id,
           nome: venda.nome,
           descricao: venda.descricao,
-          quantidade: venda.quantidade,
+          estoque: venda.estoque,
           preco: venda.preco,
         },
         id: venda.id,
         valor: venda.valor,
-        estoque: venda.estoque,
+        quantidade: venda.quantidade,
         data: venda.data,
         anotacao: venda.anotacao,
       }));

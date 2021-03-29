@@ -1,8 +1,6 @@
-import { AdicionarComponent } from './produtos/adicionar/adicionar.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { GerenciadorComponent } from './gerenciador.component';
-import { ProdutosComponent } from './produtos/produtos.component';
 
 const routes: Routes = [
   {
@@ -11,16 +9,13 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/produtos',
+        redirectTo: '/produtos/listagem',
         pathMatch: 'full',
       },
       {
         path: 'produtos',
-        component: ProdutosComponent,
-      },
-      {
-        path: 'produtos/:id',
-        component: AdicionarComponent,
+        loadChildren: () =>
+          import('./produtos/produtos.module').then((m) => m.ProdutosModule),
       },
       {
         path: 'compras',

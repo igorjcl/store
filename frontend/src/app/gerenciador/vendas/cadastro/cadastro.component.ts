@@ -2,7 +2,6 @@ import { ApiResponse } from './../../../core/model/ApiResponse';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { merge, Observable, Subject, Subscription } from 'rxjs';
 import { Produto } from 'src/app/core/model/Produto';
-import { ComprasService } from 'src/app/core/services/compras.service';
 import { VendasService } from 'src/app/core/services/vendas.service';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import {
@@ -11,14 +10,10 @@ import {
   filter,
   map,
 } from 'rxjs/operators';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProdutosService } from 'src/app/core/services/produtos.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cadastro',
@@ -32,6 +27,8 @@ export class CadastroComponent implements OnInit, OnDestroy {
   click$ = new Subject<string>();
   produtos!: Produto[];
 
+  produto!: Produto;
+
   form = this.fb.group({
     produto: this.fb.control(null, Validators.required),
     quantidade: this.fb.control('', Validators.required),
@@ -44,7 +41,8 @@ export class CadastroComponent implements OnInit, OnDestroy {
     private vs: VendasService,
     private ps: ProdutosService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -61,11 +59,16 @@ export class CadastroComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.vs
-      .vender(this.form.value)
-      .subscribe(({ message }: ApiResponse<any>) => {
+    this.vs.vender(this.form.value).subscribe(
+      ({ message }: ApiResponse<any>) => {
+        this.toastr.success(message);
         this.router.navigateByUrl('vendas/listagem');
-      });
+      },
+      (err) => {
+        console.error(err);
+        this.toastr.error('Houve algum error, tente novamente.');
+      }
+    );
   }
 
   formatter = (produto: Produto) => produto.nome;
@@ -92,6 +95,10 @@ export class CadastroComponent implements OnInit, OnDestroy {
       )
     );
   };
+
+  selectedItem(item: any) {
+    this.produto = item.item;
+  }
 
   ngOnDestroy(): void {
     this.subsctiption$.unsubscribe();

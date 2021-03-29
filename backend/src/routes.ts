@@ -9,7 +9,8 @@ const vendasController = new VendasController();
 const produtosController = new ProdutosController();
 
 routes.get("/produtos", produtosController.listAll);
-routes.patch('/produtos', comprasController.update)
+routes.patch("/produtos/:id", produtosController.update);
+routes.get("/produtos/:id", produtosController.getById);
 
 routes.post("/compras", comprasController.create);
 routes.get("/compras", comprasController.listAll);

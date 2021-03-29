@@ -26,12 +26,14 @@ export default class ComprasController {
   }
 
   async listAll(req: Request, res: Response) {
+    let nome = req.query.nome ? req.query.nome : "";
+    let data = req.query.data ? req.query.data : "";
+
     try {
-      const compras: any = await db("compras").leftJoin(
-        "produtos",
-        "produtos.id",
-        "compras.produto_id"
-      );
+      const compras: any = await db("compras")
+        .leftJoin("produtos", "produtos.id", "compras.produto_id")
+        .where("nome", "like", `%${nome}%`)
+        .where("data", "like", `%${data}%`);
 
       const c = compras.map((compra: any) => {
         return {

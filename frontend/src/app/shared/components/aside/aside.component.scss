@@ -11,6 +11,10 @@ aside {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  img {
+    width: 10rem;
+  }
 }
 
 .menu-ul {
@@ -22,8 +26,8 @@ aside {
     margin: 0.5rem 0;
     display: flex;
     align-items: center;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
     transition: 100ms linear all;
     outline: none;
 
@@ -32,9 +36,13 @@ aside {
       span {
         color: #fff;
       }
+      i {
+        color: #fff;
+      }
     }
 
-    img {
+    i {
+      font-size: 1.3rem;
       margin-right: 1rem;
     }
 
@@ -47,6 +55,9 @@ aside {
   .--active {
     background-color: rebeccapurple;
     span {
+      color: #fff;
+    }
+    i {
       color: #fff;
     }
   }

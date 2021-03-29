@@ -1,16 +1,16 @@
 <aside>
   <div class="logo">
-    <h1>Logo</h1>
+    <h1><img src="/assets/images/logo.png" alt="Cieca Store" /></h1>
   </div>
 
   <nav class="menu">
     <ul class="menu-ul">
       <li
         class="menu-item"
-        [routerLink]="['/produtos']"
+        [routerLink]="['/produtos/listagem']"
         routerLinkActive="--active"
       >
-        <img src="/assets/images/icons/shopping-bag.svg" alt="Produtos" />
+        <i class="fas fa-box-open"></i>
         <span>Produtos</span>
       </li>
       <li
@@ -18,7 +18,7 @@
         [routerLink]="['/compras/listagem']"
         routerLinkActive="--active"
       >
-        <img src="/assets/images/icons/shopping-cart.svg" alt="Compras" />
+        <i class="fas fa-shopping-cart"></i>
         <span>Compras</span>
       </li>
       <li
@@ -26,7 +26,7 @@
         [routerLink]="['/vendas/listagem']"
         routerLinkActive="--active"
       >
-        <img src="/assets/images/icons/shopping-bag.svg" alt="Vendas" />
+        <i class="fas fa-shopping-bag"></i>
         <span>Vendas</span>
       </li>
     </ul>

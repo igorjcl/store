@@ -1,7 +1,7 @@
 import { Compra } from './../model/Compra';
 import { ApiResponse } from './../model/ApiResponse';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Produto } from '../model/Produto';
 import { Observable } from 'rxjs';
@@ -20,5 +20,12 @@ export class ComprasService {
 
   obterVendas(): Observable<ApiResponse<Compra[]>> {
     return this.http.get<ApiResponse<Compra[]>>(this.API);
+  }
+
+  filtrar(nome?: string, data?: string): Observable<ApiResponse<Compra[]>> {
+    const params = new HttpParams()
+      .set('nome', `${nome}`)
+      .set('data', `${data}`);
+    return this.http.get<ApiResponse<Compra[]>>(this.API, { params });
   }
 }

@@ -1,31 +1,43 @@
 <div class="filtro d-flex justify-content-end">
-  <button class="btn btn-primary mx-2" (click)="toggle()">Filtro</button>
-  <button class="btn btn-primary" [routerLink]="['/vendas/cadastro']">
+  <button class="btn purple mx-2" (click)="toggle()">
+    <i class="fas fa-filter"></i>
+  </button>
+  <button class="btn purple" [routerLink]="['/vendas/cadastro']">
     Adicionar
   </button>
 </div>
 
-<div class="row g-3" *ngIf="isCollapsed">
+<form
+  class="row g-3"
+  *ngIf="isCollapsed"
+  [formGroup]="form"
+  (ngSubmit)="filtrar()"
+>
   <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">Nome</label>
+    <label for="nome" class="form-label">Nome</label>
     <input
       type="email"
       class="form-control"
-      id="inputEmail4"
+      id="nome"
       placeholder="Nome do produto"
+      formControlName="nome"
     />
   </div>
   <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">Data</label>
-    <input type="date" class="form-control" id="inputPassword4" />
+    <label for="data" class="form-label">Data</label>
+    <input type="date" class="form-control" id="data" formControlName="data" />
   </div>
 
   <div class="col-md-12 d-flex justify-content-end">
-    <button class="btn btn-primary">Filtrar</button>
+    <button class="btn purple mx-2">Filtrar</button>
+    <button class="btn btn-secondary" (click)="limpar()">Limpar</button>
   </div>
-</div>
+</form>
 
 <section class="mt-4 listagem p-4">
+  <h4 class="py-4 d-flex justify-content-start">
+    Total de Vendas: {{ total | formatCurrency }}
+  </h4>
   <table class="table table-borderless table-hover">
     <thead>
       <tr>
@@ -39,7 +51,7 @@
       <tr *ngFor="let venda of vendas">
         <td>{{ venda.produto.nome }}</td>
         <td>{{ venda.valor }} R$</td>
-        <td>{{ venda.estoque }}</td>
+        <td>{{ venda.quantidade }}</td>
         <td>{{ venda.data }}</td>
       </tr>
     </tbody>

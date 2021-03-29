@@ -1,13 +1,13 @@
+import { ProdutosModule } from './produtos/produtos.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GerenciadorComponent } from './gerenciador.component';
 import { GerenciadorRoutingModule } from './gerenciador-routing.module';
-import { AsideComponent } from './components/aside/aside.component';
-import { ProdutosComponent } from './produtos/produtos.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [GerenciadorComponent, AsideComponent, ProdutosComponent],
-  imports: [CommonModule, GerenciadorRoutingModule],
+  declarations: [GerenciadorComponent],
+  imports: [CommonModule, GerenciadorRoutingModule, ProdutosModule, SharedModule],
   bootstrap: [GerenciadorComponent],
 })
 export class GerenciadorModule {}

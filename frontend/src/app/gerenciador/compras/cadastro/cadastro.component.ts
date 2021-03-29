@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { ApiResponse } from './../../../core/model/ApiResponse';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -28,7 +29,8 @@ export class CadastroComponent implements OnInit {
   constructor(
     private cs: ComprasService,
     private fb: FormBuilder,
-    private ar: Router
+    private ar: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {}
@@ -43,8 +45,12 @@ export class CadastroComponent implements OnInit {
     this.cs.cadastrarVenda(this.form.value).subscribe(
       ({ message }: ApiResponse<any>) => {
         this.ar.navigateByUrl('compras/listagem');
+        this.toastr.success(message);
       },
-      (err) => console.log(err),
+      (err) => {
+        console.error(err);
+        this.toastr.error('Houve algum error, tente novamente.');
+      },
       () => this.limparFormulario()
     );
   }

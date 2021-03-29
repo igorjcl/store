@@ -4,7 +4,7 @@ export type Venda = {
   id?: number;
   produto: Produto;
   quantidade: number;
-  precoVenda: string;
+  valor: string;
   data: Date;
   anotacao?: string;
 };
